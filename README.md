@@ -4,20 +4,17 @@
 
 This repository provides course material for the spring semester (Jan-May 2021) offering of CS6741 at IIT Madras.
 
-### Course Details
-
-* 3 classes every week on: Mon 2-3.15pm, Tue 3.30-4.45 pm, Thu 5-5.50 pm
-
-### Tutorials
+### Class Notebooks
 
 *(Note: The notebooks may take a min or two to load)*
 
-* Basics of Julia: [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/divkakwani/iitm-cs6741/master?urlpath=pluto/open?url=https%3A%2F%2Fraw.githubusercontent.com%2Fdivkakwani%2Fiitm-cs6741%2Fmaster%2Ftutorials%2F01_JuliaBasics.jl)
-* Probability:  [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/divkakwani/iitm-cs6741/master?urlpath=pluto/open?url=https%3A%2F%2Fraw.githubusercontent.com%2Fdivkakwani%2Fiitm-cs6741%2Fmaster%2Ftutorials%2F02_Probability.jl)
-* 
-### Assignments
-
-* Empty Notebook (with environment setup): [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/divkakwani/iitm-cs6741/master?urlpath=pluto)
+* Basics of Julia: [![Binder](https://mybinder.org/badge_logo.svg)](https://binder.plutojl.org/open?url=https%253A%252F%252Fgithub.com%252Fsashedher%252Fiitm-cs6741%252Fblob%252Fmaster%252Ftutorials%252F01_JuliaBasics.jl%253Fraw%253Dtrue)
+* Probability:  [![Binder](https://mybinder.org/badge_logo.svg)](https://binder.plutojl.org/open?url=https%253A%252F%252Fgithub.com%252Fsashedher%252Fiitm-cs6741%252Fblob%252Fmaster%252Ftutorials%252F02_Probability.jl%253Fraw%253Dtrue)
+* DataFrames: [![Binder](https://mybinder.org/badge_logo.svg)](https://binder.plutojl.org/open?url=https%253A%252F%252Fgithub.com%252Fsashedher%252Fiitm-cs6741%252Fblob%252Fmaster%252Ftutorials%252F03_DataFrames.jl%253Fraw%253Dtrue)
+* Measures of Central Tendency:[![Binder](https://mybinder.org/badge_logo.svg)](https://binder.plutojl.org/open?url=https%253A%252F%252Fgithub.com%252Fsashedher%252Fiitm-cs6741%252Fblob%252Fmaster%252Ftutorials%252F04_MeasuresOfCentralTendency.jl%253Fraw%253Dtrue)
+* Measures of Spread:[![Binder](https://mybinder.org/badge_logo.svg)](https://binder.plutojl.org/open?url=https%253A%252F%252Fgithub.com%252Fsashedher%252Fiitm-cs6741%252Fblob%252Fmaster%252Ftutorials%252F05_MeasuresOfSpread.jl%253Fraw%253Dtrue)
+* Measures of two Variables:[![Binder](https://mybinder.org/badge_logo.svg)](https://binder.plutojl.org/open?url=https%253A%252F%252Fgithub.com%252Fsashedher%252Fiitm-cs6741%252Fblob%252Fmaster%252Ftutorials%252F06_Measures_of_two_variables.jl%253Fraw%253Dtrue)
+* Visuvalization:[![Binder](https://mybinder.org/badge_logo.svg)](https://binder.plutojl.org/open?url=https%253A%252F%252Fgithub.com%252Fsashedher%252Fiitm-cs6741%252Fblob%252Fmaster%252Ftutorials%252F07_Visualisation.jl%253Fraw%253Dtrue) 
 
 ### Teaching Staff
 
