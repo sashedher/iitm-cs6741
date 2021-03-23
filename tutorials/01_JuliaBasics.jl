@@ -334,7 +334,7 @@ md"We will estimate the value of π in a very different way - by sampling points
 
 # ╔═╡ cd97b340-36a6-11eb-0675-7d2668297002
 begin
-	N = 10^6
+	N = 10^4
 	points = [[rand(), rand()] for _ in 1:N]
 	withincircle = filter((x) -> (norm(x) <= 1), points)
 	outsidecircle = filter((x) -> (norm(x) > 1), points)
