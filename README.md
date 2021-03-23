@@ -15,6 +15,7 @@ This repository provides course material for the spring semester (Jan-May 2021) 
 * Basics of Julia: [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/divkakwani/iitm-cs6741/master?urlpath=pluto/open?url=https%3A%2F%2Fraw.githubusercontent.com%2Fdivkakwani%2Fiitm-cs6741%2Fmaster%2Ftutorials%2F01_JuliaBasics.jl)
 * Probability:  [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/divkakwani/iitm-cs6741/master?urlpath=pluto/open?url=https%3A%2F%2Fraw.githubusercontent.com%2Fdivkakwani%2Fiitm-cs6741%2Fmaster%2Ftutorials%2F02_Probability.jl)
 
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/sashedher/iitm-cs6741/commit?urlpath=https%3A%2F%2Fgithub.com%2Fsashedher%2Fiitm-cs6741%2Fblob%2Fmaster%2Ftutorials%2F01_JuliaBasics.jl)
 ### Assignments
 
 * Empty Notebook (with environment setup): [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/divkakwani/iitm-cs6741/master?urlpath=pluto)
