@@ -14,7 +14,7 @@ This repository provides course material for the spring semester (Jan-May 2021) 
 * Measures of Central Tendency:[![Binder](https://mybinder.org/badge_logo.svg)](https://binder.plutojl.org/open?url=https%253A%252F%252Fgithub.com%252Fsashedher%252Fiitm-cs6741%252Fblob%252Fmaster%252Ftutorials%252F04_MeasuresOfCentralTendency.jl%253Fraw%253Dtrue)
 * Measures of Spread:[![Binder](https://mybinder.org/badge_logo.svg)](https://binder.plutojl.org/open?url=https%253A%252F%252Fgithub.com%252Fsashedher%252Fiitm-cs6741%252Fblob%252Fmaster%252Ftutorials%252F05_MeasuresOfSpread.jl%253Fraw%253Dtrue)
 * Measures of two Variables:[![Binder](https://mybinder.org/badge_logo.svg)](https://binder.plutojl.org/open?url=https%253A%252F%252Fgithub.com%252Fsashedher%252Fiitm-cs6741%252Fblob%252Fmaster%252Ftutorials%252F06_Measures_of_two_variables.jl%253Fraw%253Dtrue)
-* Visuvalization:[![Binder](https://mybinder.org/badge_logo.svg)](https://binder.plutojl.org/open?url=https%253A%252F%252Fgithub.com%252Fsashedher%252Fiitm-cs6741%252Fblob%252Fmaster%252Ftutorials%252F07_Visualisation.jl%253Fraw%253Dtrue) 
+* Visualization:[![Binder](https://mybinder.org/badge_logo.svg)](https://binder.plutojl.org/open?url=https%253A%252F%252Fgithub.com%252Fsashedher%252Fiitm-cs6741%252Fblob%252Fmaster%252Ftutorials%252F07_Visualisation.jl%253Fraw%253Dtrue) 
 
 ### New Notebook [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/sashedher/iitm-cs6741/master?urlpath=pluto)
 
