@@ -281,7 +281,7 @@ cov(WklyRpt.Kerala, WklyRpt.India)
 heatmap(WklyRpt.Kerala,WklyRpt.India, WklyRpt)
 
 # ╔═╡ b0ec62b2-9494-11eb-0f4d-21759c217915
-WklyRpt |> @vlplot(:,x=:Kerala, y=:India, color=:Delhi)
+  #WklyRpt |> @vlplot(:,x=:Kerala, y=:India, color=:Delhi)
 
 # ╔═╡ 7cf0da8a-9495-11eb-22ce-51490de240db
 using VegaLite, VegaDatasets
