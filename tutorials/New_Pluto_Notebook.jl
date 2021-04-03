@@ -24,13 +24,17 @@ begin
     Pkg.add("Distributions")
     Pkg.add("Statistics")
     Pkg.add("LaTeXStrings")
+	Pkg.add("VegaLite")
 end
 
 # ╔═╡ b0f0b9a4-938c-11eb-3929-331bdd555c4c
-using DataFrames,JSON,HTTP,JSONTables,Dates,TableIO,CSV
+using DataFrames,JSON,HTTP,JSONTables,Dates,TableIO,CSV,VegaLite
 
 # ╔═╡ 298ff14c-910d-11eb-1088-efa7ab843b4f
 using PlutoUI,FreqTables,RDatasets,StatsBase,StatsPlots,Distributions,Statistics,LaTeXStrings,QuadGK
+
+# ╔═╡ 4b759868-9494-11eb-1f4e-3d0ab484ec88
+
 
 # ╔═╡ 131772d8-917f-11eb-1add-1f94cfb9bf63
 begin
@@ -231,6 +235,9 @@ dfcv=select(dfcv1,:Date,:State,:Confirmed)
 # ╔═╡ cb23ef50-93c3-11eb-03dc-b5dc6280542f
 dfcv
 
+# ╔═╡ 172470b4-9491-11eb-015f-13fba0607408
+describe(dfcv)
+
 # ╔═╡ 554caf24-93c3-11eb-28ee-4163180e7649
 weekno=Dates.week.(dfcv[:,:Date])
 
@@ -250,34 +257,72 @@ length(gdat)
 fdf=combine(gdat,:Confirmed => sum)
 
 # ╔═╡ b9ad8452-93dc-11eb-1011-03bbbc391430
-WklyRpt=unstack(fdf, :State,:Confirmed_sum)
+WklyRptd=unstack(fdf, :State,:Confirmed_sum)
 
-# ╔═╡ 5092565e-93dd-11eb-13bb-d74ece157512
-cov(WklyRpt.Kerala, WklyRpt.India)
+# ╔═╡ 26afac3e-9492-11eb-30cc-eb8b0e6157ec
+WklyRpt=select!(WklyRptd, Not([Symbol(names(WklyRptd)[38]),:Lakshadweep]))
 
-# ╔═╡ e38715a8-93dd-11eb-3949-8f37ec5b6a7b
-heatmap(names(WklyRpt)[1],names(WklyRpt)[1],WklyRpt)
+# ╔═╡ 5c7f8602-9492-11eb-135b-9744ef50d1f7
+Symbol(names(WklyRptd)[36])
 
-# ╔═╡ eb89812a-93e0-11eb-0356-cf81866baf20
-ck=Int64(WklyRpt[:,:Kerala])
+# ╔═╡ b61aa7e2-9491-11eb-1730-7de44b9a4c3d
+dropmissing!(WklyRpt, :)
+
+# ╔═╡ d42ab236-9491-11eb-2d16-01166e6253db
+WklyRpt
 
 # ╔═╡ 72c29f72-93df-11eb-3ff2-2bf3ed8ae0be
 describe(WklyRpt)
 
-# ╔═╡ 718dc3fc-93df-11eb-0d2d-cb22195ba3c7
+# ╔═╡ 5092565e-93dd-11eb-13bb-d74ece157512
+cov(WklyRpt.Kerala, WklyRpt.India)
 
+# ╔═╡ 87d68ea8-9493-11eb-2a96-bb067f249dbf
+heatmap(WklyRpt.Kerala,WklyRpt.India, WklyRpt)
 
-# ╔═╡ 246f1cf0-93de-11eb-2046-2dbf48fd3e65
-typeof(WklyRpt[2,3])
+# ╔═╡ b0ec62b2-9494-11eb-0f4d-21759c217915
+WklyRpt |> @vlplot(:,x=:Kerala, y=:India, color=:Delhi)
 
-# ╔═╡ 364aab9c-93de-11eb-3ddd-ab0af4f27f95
-names(WklyRpt)[2]
+# ╔═╡ 7cf0da8a-9495-11eb-22ce-51490de240db
+using VegaLite, VegaDatasets
+
+WklyRpt|>
+@vlplot(
+    title="2010 Daily Max Temperature (F) in Seattle, WA",
+    :rect,
+    x={
+        "date:o",
+        timeUnit=:WeekNo,
+        title="Week Num",
+        axis={labelAngle=0,format="%e"}
+    },
+    y={
+        "date:o",
+        timeUnit=:State,
+        title="State"
+    },
+    color={
+        "temp:q",
+        aggregate="max",
+        legend={title=nothing}
+    },
+    config={
+        view={
+            strokeWidth=0,
+            step=13
+        },
+        axis={
+            domain=false
+        }
+    }
+)
 
 # ╔═╡ babe8d76-93de-11eb-2025-377581321a42
 heatmap(randn(10,10))
 
 # ╔═╡ Cell order:
 # ╠═7420c480-910c-11eb-2338-6bbd68005f0a
+# ╠═4b759868-9494-11eb-1f4e-3d0ab484ec88
 # ╠═131772d8-917f-11eb-1add-1f94cfb9bf63
 # ╠═b0f0b9a4-938c-11eb-3929-331bdd555c4c
 # ╠═298ff14c-910d-11eb-1088-efa7ab843b4f
@@ -331,6 +376,7 @@ heatmap(randn(10,10))
 # ╠═0f5f8730-93a9-11eb-10d5-b99d6c469e22
 # ╠═c392491e-93df-11eb-3ced-7599ee6ea181
 # ╠═cb23ef50-93c3-11eb-03dc-b5dc6280542f
+# ╠═172470b4-9491-11eb-015f-13fba0607408
 # ╠═554caf24-93c3-11eb-28ee-4163180e7649
 # ╠═f3036fd6-93c4-11eb-3099-e5610582221b
 # ╠═603ff93e-93c3-11eb-287f-4f3f92831712
@@ -338,11 +384,13 @@ heatmap(randn(10,10))
 # ╠═d49bff9c-93db-11eb-1299-6b7f94d8987c
 # ╠═08be43ac-93dc-11eb-2804-bd8927071733
 # ╠═b9ad8452-93dc-11eb-1011-03bbbc391430
-# ╠═5092565e-93dd-11eb-13bb-d74ece157512
-# ╠═e38715a8-93dd-11eb-3949-8f37ec5b6a7b
-# ╠═eb89812a-93e0-11eb-0356-cf81866baf20
+# ╠═26afac3e-9492-11eb-30cc-eb8b0e6157ec
+# ╠═5c7f8602-9492-11eb-135b-9744ef50d1f7
+# ╠═b61aa7e2-9491-11eb-1730-7de44b9a4c3d
+# ╠═d42ab236-9491-11eb-2d16-01166e6253db
 # ╠═72c29f72-93df-11eb-3ff2-2bf3ed8ae0be
-# ╠═718dc3fc-93df-11eb-0d2d-cb22195ba3c7
-# ╠═246f1cf0-93de-11eb-2046-2dbf48fd3e65
-# ╠═364aab9c-93de-11eb-3ddd-ab0af4f27f95
+# ╠═5092565e-93dd-11eb-13bb-d74ece157512
+# ╠═87d68ea8-9493-11eb-2a96-bb067f249dbf
+# ╠═b0ec62b2-9494-11eb-0f4d-21759c217915
+# ╠═7cf0da8a-9495-11eb-22ce-51490de240db
 # ╠═babe8d76-93de-11eb-2025-377581321a42
