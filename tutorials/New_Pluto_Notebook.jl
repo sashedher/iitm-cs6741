@@ -284,38 +284,38 @@ heatmap(WklyRpt.Kerala,WklyRpt.India, WklyRpt)
   #WklyRpt |> @vlplot(:,x=:Kerala, y=:India, color=:Delhi)
 
 # ╔═╡ 7cf0da8a-9495-11eb-22ce-51490de240db
-using VegaLite, VegaDatasets
+	# using VegaLite, VegaDatasets
 
-WklyRpt|>
-@vlplot(
-    title="2010 Daily Max Temperature (F) in Seattle, WA",
-    :rect,
-    x={
-        "date:o",
-        timeUnit=:WeekNo,
-        title="Week Num",
-        axis={labelAngle=0,format="%e"}
-    },
-    y={
-        "date:o",
-        timeUnit=:State,
-        title="State"
-    },
-    color={
-        "temp:q",
-        aggregate="max",
-        legend={title=nothing}
-    },
-    config={
-        view={
-            strokeWidth=0,
-            step=13
-        },
-        axis={
-            domain=false
-        }
-    }
-)
+	# WklyRpt|>
+	# @vlplot(
+	#     title="2010 Daily Max Temperature (F) in Seattle, WA",
+	#     :rect,
+	#     x={
+	#         "date:o",
+	#         timeUnit=:WeekNo,
+	#         title="Week Num",
+	#         axis={labelAngle=0,format="%e"}
+	#     },
+	#     y={
+	#         "date:o",
+	#         timeUnit=:State,
+	#         title="State"
+	#     },
+	#     color={
+	#         "temp:q",
+	#         aggregate="max",
+	#         legend={title=nothing}
+	#     },
+	#     config={
+	#         view={
+	#             strokeWidth=0,
+	#             step=13
+	#         },
+	#         axis={
+	#             domain=false
+	#         }
+	#     }
+	# )
 
 # ╔═╡ babe8d76-93de-11eb-2025-377581321a42
 heatmap(randn(10,10))
