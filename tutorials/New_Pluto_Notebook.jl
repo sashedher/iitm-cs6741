@@ -49,6 +49,12 @@ end
 # ╔═╡ ee48c5f4-93a6-11eb-238f-1ffd8145a1ef
 
 
+# ╔═╡ 00a18eb0-950b-11eb-2345-8774769664b7
+md"Question-1"
+
+# ╔═╡ 633f5438-9530-11eb-0091-4ded1bb596a6
+
+
 # ╔═╡ 01cea346-9177-11eb-00a3-e3d8875dbc77
 Q = Normal(0, 1)
 
@@ -61,35 +67,23 @@ v
 # ╔═╡ dd1a76ce-9180-11eb-0ee8-9337eeb7f71a
 P=TDist(v)
 
-# ╔═╡ 89aab454-9180-11eb-320f-a5456e1db2b3
-pdf(P,0)*log(pdf(P,0)/pdf(Q,0))
-
 # ╔═╡ 2f38094c-9181-11eb-20e9-bf788b2093f0
-KLDiv(x)=pdf(P,x)*log(pdf(P,x)/pdf(Q,x))
+divr(P,Q,x)=pdf(P,x)*log(pdf(P,x)/pdf(Q,x))
 
 # ╔═╡ a1be90a0-9186-11eb-3c36-fff654b98d91
-divr(n,t)=quadgk(x->pdf(t,x)*log(pdf(t,x)/pdf(n,x)),(-37:37)...)[1]
+KLDiv(n,t)=quadgk(x->divr(n,t,x),(-37:37)...)[1]
 
 # ╔═╡ 0ba1593a-9187-11eb-255f-478177875ea9
-divr(Q,P)
+KLDiv(P,Q)
 
 # ╔═╡ 2f609232-91ff-11eb-1e50-8fb6bac96e47
 
 
-# ╔═╡ 63426374-9181-11eb-207c-b543757532f3
-quadgk(x->KLDiv(x), (-37:37)...)[1]
+# ╔═╡ 17fbbf2e-950b-11eb-2975-eb0e773a4bfb
+md"Question-2"
 
-# ╔═╡ 5e46ab3a-9183-11eb-0930-49b5eafb2d9b
-length((-37:37))
+# ╔═╡ 68db2700-9530-11eb-17d1-6560d914cf03
 
-# ╔═╡ 62a23480-9186-11eb-0216-95e465c51918
-KLD(D1,D2)=quadgk(x->KLDiv(x), (-37:37)...)[1]
-
-# ╔═╡ c95381fa-91fb-11eb-21d3-a15225ba19d2
-# begin
-#     conv(x) = sum(pdf(D_n,x-k)*pdf(D_b,k) for k=-5:0.1:8)
-#     # plot(-5:0.1:8, conv.(-5:0.1:8))
-# end
 
 # ╔═╡ f7ae629a-91fb-11eb-0c2d-f114013f1cf7
 U1=Uniform(0,1)
@@ -117,13 +111,16 @@ begin
 end
 
 # ╔═╡ cd1ce894-91fb-11eb-0fed-79787ddd771f
-dis
+length(dis)
+
+# ╔═╡ ebb6b8e6-9511-11eb-03d7-b7083f3801dd
+params(dis[9])
+
+# ╔═╡ 98533a44-9515-11eb-1877-2b32abeacef9
+reverse(dis)
 
 # ╔═╡ 0818f558-9208-11eb-065c-3f850b7d161c
 conv(x) = sum(pdf(dis[1],x-k)*pdf(dis[2],k) for k=0.0:0.001:1.0)
-
-# ╔═╡ 322ae216-9208-11eb-1fb9-7f7c4de8b521
-conv.(-5:0.1:8)
 
 # ╔═╡ 62686598-9208-11eb-2bbd-9713670d77f1
  plot(-1:0.01:3, conv.(-1:0.01:3))
@@ -140,20 +137,57 @@ maximum(convs.(dis[1],dis[2],-1:0.01:3))
 # ╔═╡ cdff0544-91fb-11eb-259b-8772fde759c2
 begin
 	cns=[]
+	x=deepcopy(dis[1])
 	for i in 1:8
 	    for j in i:9
-			convs.(dis[i],dis[j],-1:0.01:3)
+			x=convs.(dis[i],dis[j],-0:0.01:2)
 		end
-		push!(cns,)
+		push!(cns,x)
 	end
 		
 end
 
 # ╔═╡ 10b433a4-920c-11eb-2adf-3d60a02daa0e
-length(cns)
+length(cns[1])
+
+# ╔═╡ 49afae20-9533-11eb-1a98-e9e5d53e83d5
+params(fit(Normal,cns[1]))
+
+# ╔═╡ 2eb828d6-950b-11eb-1269-4f21a352add0
+cns[1]
+
+# ╔═╡ 2e293962-9512-11eb-0811-c5fb0c48eb35
+ plot(-0:0.01:2,cns[8])
+
+# ╔═╡ c4403f24-9515-11eb-0f24-871cd41dc169
+pdf(fit(Uniform, cns[1]),0.3)
+
+# ╔═╡ fd4228f4-9516-11eb-0638-81a14573fa5b
+params(fit(Uniform, cns[1]))
+
+# ╔═╡ 6fd2b282-9513-11eb-376e-3184f86d873a
+scatter(1:8,mean.(cns))
+
+# ╔═╡ 34d0c3d4-9530-11eb-3f1d-71b21908559a
+
+
+# ╔═╡ 29dcc090-9530-11eb-0712-53d344512a93
+md"Question-3"
+
+# ╔═╡ 341b11cc-9530-11eb-2074-8b56a2d00c4e
+
+
+# ╔═╡ 76301d3e-9530-11eb-363e-8bdfce50e084
+
+
+# ╔═╡ 7401498e-9530-11eb-18ec-d54bcd9cc24e
+
 
 # ╔═╡ a90df21e-9394-11eb-0ff7-37cfc41afa04
 md"Question-4"
+
+# ╔═╡ 774c7b48-9530-11eb-194a-c55178f68605
+
 
 # ╔═╡ a88bdb1c-9394-11eb-1e74-7bd8f5df3bd9
 U4=Uniform(0,1)
@@ -196,32 +230,36 @@ begin
 	plot!([d_median, d_median], [600, median(r4)], label="Median", line=(9, :dot, :orange))
 end
 
+# ╔═╡ a725cce4-952f-11eb-1f84-4b4019edf88b
+begin
+	plot([d_mean, d_mean], [600, mean(r4)], label="Mean", line=(8, :dash, :green))
+	plot!([d_mode, d_mode], [600, mode(r4)], label="Mode", line=(5, :red))
+	plot!([d_median, d_median], [600, median(r4)], label="Median", line=(9, :dot, :orange))
+end
+
 # ╔═╡ 794befd2-9398-11eb-1540-c1d46e036644
 d_mean,d_median,d_mode
+
+# ╔═╡ 3d4f525a-9530-11eb-2fbf-01d16d9134a9
+
+
+# ╔═╡ 3c6ea28c-9530-11eb-0a0a-fd97e48763ce
+md"Question-5"
+
+# ╔═╡ 7d98ca88-9530-11eb-0c49-41739296b05f
+
+
+# ╔═╡ 7f7a5d1c-9530-11eb-26a8-07bd5be93377
+
+
+# ╔═╡ 43579cc2-950b-11eb-0050-117079ceb0c2
+
 
 # ╔═╡ 81e22c1a-93a7-11eb-3c54-3dc5d37d1a9e
 md"Question-6"
 
-# ╔═╡ 9318d3d2-93a7-11eb-3a5b-375cc68de07e
-begin
-	res = HTTP.get("https://api.covid19india.org/data.json")
-	dt = String(res.body)
-	jsdt = JSON.Parser.parse(dt)
-end
+# ╔═╡ 8b801a0c-9530-11eb-314d-93629a5577ea
 
-# ╔═╡ 81bf2f1c-93a7-11eb-2c6b-d759292526c4
-df =DataFrame.(jsdt["cases_time_series"])
-
-# ╔═╡ f3a6bee2-93a7-11eb-2ea5-a766f2ea8760
-df41=deepcopy(df[1])
-
-# ╔═╡ f53fd502-93a7-11eb-03bf-23879fef6d61
-for i in range(1,length=length(df)-1)
-	append!(df41,df[i+1])
-end
-
-# ╔═╡ 0732c1cc-93a8-11eb-160f-afcd3625d342
-df41
 
 # ╔═╡ 0ab14aa2-93a9-11eb-2d57-eb405217aeca
 @bind f PlutoUI.FilePicker() # pick any supported file type
@@ -317,8 +355,29 @@ heatmap(WklyRpt.Kerala,WklyRpt.India, WklyRpt)
 	#     }
 	# )
 
-# ╔═╡ babe8d76-93de-11eb-2025-377581321a42
-heatmap(randn(10,10))
+# ╔═╡ 5875082c-9530-11eb-3236-713805451b77
+
+
+# ╔═╡ 07852b36-9530-11eb-12a5-7d0e1f5f1d43
+md"Question-7"
+
+# ╔═╡ 5a474a02-9530-11eb-11be-539d985758a9
+
+
+# ╔═╡ 84a0c788-9530-11eb-0e55-1525d97e02b9
+N7=Normal(0,1)
+
+# ╔═╡ 82342aae-9536-11eb-153b-3f81b3e83945
+cdf(N7,3)-cdf(N7,-3)
+
+# ╔═╡ fd838fb8-9536-11eb-03b4-5f183bb52852
+T7=TDist(1)
+
+# ╔═╡ 1c4ef89c-9537-11eb-279c-3b8c1710ad57
+plot(-0:0.01:2,[pdf(T7,pt) for pt in -0:0.01:2])
+
+# ╔═╡ 0d21d5ea-9537-11eb-02d7-3b5dfe34cf84
+cdf(T7,3)
 
 # ╔═╡ Cell order:
 # ╠═7420c480-910c-11eb-2338-6bbd68005f0a
@@ -326,20 +385,19 @@ heatmap(randn(10,10))
 # ╠═131772d8-917f-11eb-1add-1f94cfb9bf63
 # ╠═b0f0b9a4-938c-11eb-3929-331bdd555c4c
 # ╠═298ff14c-910d-11eb-1088-efa7ab843b4f
-# ╠═ee48c5f4-93a6-11eb-238f-1ffd8145a1ef
+# ╟─ee48c5f4-93a6-11eb-238f-1ffd8145a1ef
+# ╟─00a18eb0-950b-11eb-2345-8774769664b7
+# ╟─633f5438-9530-11eb-0091-4ded1bb596a6
 # ╠═01cea346-9177-11eb-00a3-e3d8875dbc77
 # ╠═975d87a0-9182-11eb-0147-919853fe6da4
 # ╠═0c5ec226-9183-11eb-000c-c952dd92ade0
 # ╠═dd1a76ce-9180-11eb-0ee8-9337eeb7f71a
-# ╠═89aab454-9180-11eb-320f-a5456e1db2b3
 # ╠═2f38094c-9181-11eb-20e9-bf788b2093f0
 # ╠═a1be90a0-9186-11eb-3c36-fff654b98d91
 # ╠═0ba1593a-9187-11eb-255f-478177875ea9
-# ╠═2f609232-91ff-11eb-1e50-8fb6bac96e47
-# ╠═63426374-9181-11eb-207c-b543757532f3
-# ╠═5e46ab3a-9183-11eb-0930-49b5eafb2d9b
-# ╠═62a23480-9186-11eb-0216-95e465c51918
-# ╠═c95381fa-91fb-11eb-21d3-a15225ba19d2
+# ╟─2f609232-91ff-11eb-1e50-8fb6bac96e47
+# ╟─17fbbf2e-950b-11eb-2975-eb0e773a4bfb
+# ╟─68db2700-9530-11eb-17d1-6560d914cf03
 # ╠═f7ae629a-91fb-11eb-0c2d-f114013f1cf7
 # ╠═f2741aea-91fb-11eb-3e3e-3f1853d4e5a0
 # ╠═8b462602-91ff-11eb-13db-27847df88df9
@@ -347,15 +405,28 @@ heatmap(randn(10,10))
 # ╠═92345b5a-91ff-11eb-3652-f3b1009318c7
 # ╠═cbed5580-91fb-11eb-37f0-494b8d6a253d
 # ╠═cd1ce894-91fb-11eb-0fed-79787ddd771f
+# ╠═ebb6b8e6-9511-11eb-03d7-b7083f3801dd
+# ╠═98533a44-9515-11eb-1877-2b32abeacef9
 # ╠═0818f558-9208-11eb-065c-3f850b7d161c
-# ╠═322ae216-9208-11eb-1fb9-7f7c4de8b521
 # ╠═62686598-9208-11eb-2bbd-9713670d77f1
 # ╠═eef7d312-9209-11eb-29ce-cf9b52413cf3
 # ╠═33653a62-920a-11eb-3186-1162d17fb9fb
 # ╠═2e7bbe7e-920d-11eb-278f-cf23208d520e
 # ╠═cdff0544-91fb-11eb-259b-8772fde759c2
 # ╠═10b433a4-920c-11eb-2adf-3d60a02daa0e
+# ╠═49afae20-9533-11eb-1a98-e9e5d53e83d5
+# ╠═2eb828d6-950b-11eb-1269-4f21a352add0
+# ╠═2e293962-9512-11eb-0811-c5fb0c48eb35
+# ╠═c4403f24-9515-11eb-0f24-871cd41dc169
+# ╠═fd4228f4-9516-11eb-0638-81a14573fa5b
+# ╠═6fd2b282-9513-11eb-376e-3184f86d873a
+# ╟─34d0c3d4-9530-11eb-3f1d-71b21908559a
+# ╟─29dcc090-9530-11eb-0712-53d344512a93
+# ╟─341b11cc-9530-11eb-2074-8b56a2d00c4e
+# ╠═76301d3e-9530-11eb-363e-8bdfce50e084
+# ╟─7401498e-9530-11eb-18ec-d54bcd9cc24e
 # ╟─a90df21e-9394-11eb-0ff7-37cfc41afa04
+# ╟─774c7b48-9530-11eb-194a-c55178f68605
 # ╠═a88bdb1c-9394-11eb-1e74-7bd8f5df3bd9
 # ╠═c1b23bec-9394-11eb-1b67-f5c5d9399cce
 # ╠═f5648448-9394-11eb-16d1-8bee54c6cd04
@@ -365,13 +436,15 @@ heatmap(randn(10,10))
 # ╠═445d3a02-9397-11eb-10ce-41c6e44124b5
 # ╠═afbb4068-9395-11eb-36ef-5b96bd9928d8
 # ╠═fc6e3d88-9394-11eb-2099-392f638b5de3
+# ╠═a725cce4-952f-11eb-1f84-4b4019edf88b
 # ╠═794befd2-9398-11eb-1540-c1d46e036644
+# ╟─3d4f525a-9530-11eb-2fbf-01d16d9134a9
+# ╟─3c6ea28c-9530-11eb-0a0a-fd97e48763ce
+# ╟─7d98ca88-9530-11eb-0c49-41739296b05f
+# ╠═7f7a5d1c-9530-11eb-26a8-07bd5be93377
+# ╟─43579cc2-950b-11eb-0050-117079ceb0c2
 # ╟─81e22c1a-93a7-11eb-3c54-3dc5d37d1a9e
-# ╠═9318d3d2-93a7-11eb-3a5b-375cc68de07e
-# ╠═81bf2f1c-93a7-11eb-2c6b-d759292526c4
-# ╠═f3a6bee2-93a7-11eb-2ea5-a766f2ea8760
-# ╠═f53fd502-93a7-11eb-03bf-23879fef6d61
-# ╠═0732c1cc-93a8-11eb-160f-afcd3625d342
+# ╟─8b801a0c-9530-11eb-314d-93629a5577ea
 # ╠═0ab14aa2-93a9-11eb-2d57-eb405217aeca
 # ╠═0f5f8730-93a9-11eb-10d5-b99d6c469e22
 # ╠═c392491e-93df-11eb-3ced-7599ee6ea181
@@ -393,4 +466,11 @@ heatmap(randn(10,10))
 # ╠═87d68ea8-9493-11eb-2a96-bb067f249dbf
 # ╠═b0ec62b2-9494-11eb-0f4d-21759c217915
 # ╠═7cf0da8a-9495-11eb-22ce-51490de240db
-# ╠═babe8d76-93de-11eb-2025-377581321a42
+# ╟─5875082c-9530-11eb-3236-713805451b77
+# ╟─07852b36-9530-11eb-12a5-7d0e1f5f1d43
+# ╟─5a474a02-9530-11eb-11be-539d985758a9
+# ╠═84a0c788-9530-11eb-0e55-1525d97e02b9
+# ╠═82342aae-9536-11eb-153b-3f81b3e83945
+# ╠═fd838fb8-9536-11eb-03b4-5f183bb52852
+# ╠═1c4ef89c-9537-11eb-279c-3b8c1710ad57
+# ╠═0d21d5ea-9537-11eb-02d7-3b5dfe34cf84
